@@ -1,8 +1,6 @@
 # University-Empirical-Project
 
-This project is an early work in progress and aims to answer the following research question: 
-
-Can oil price movements with regards to the Iran war predict next day financial news sentiment?
+This project is an early work in progress and aims to explore how market sentiment has changed with oil during the course of the Iran war.
 
 **Important note on time to run and laptop specs**
 
