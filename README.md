@@ -19,9 +19,10 @@ This README covers how to run the code as well as a brief overview and its links
 - [References](#References)
 
 ## Overview 
-**All scripts are also all fully commented**
+>*Please only run scripts in `Scripts/`.  
+>All scripts are also fully commented.*
 
-Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses out HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data.
+Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data.
 >*Runtime*:  Around 6 minutes due to rate limiting
 
 Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our another NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated per day, and SQL is used to create new columns such as moving averages or lagging.
@@ -31,6 +32,7 @@ Script 3 (`Scripts/Output.ipynb`) uses our dataset from script 2 to generate our
 
 ## Setup & Replicatability
 
+>**Note:** I am using Python 3.14 as the kernal, I have also tested it on 3.13.
 
 ### 1. Clone the repository
 
@@ -47,11 +49,11 @@ pip install requests pandas beautifulsoup4 sentence-transformers python-dateutil
             matplotlib scikit-learn scipy huggingface_hub 
 ```
 
-> **Note:** First-run model downloads may take a few minutes.
+> **Note:** First run model downloads may take a few minutes.
 
 ### 3. Set up API keys
 
-Create a `.env` file, and fill it with your keys.
+Create an `.env` file, and fill it with your keys. Ensure file name is `.env`
 
 ```bash
 #.env example 
@@ -70,13 +72,16 @@ All keys are free, you can sign up for your own key at the following links. One 
 - [Hugging Face](https://huggingface.co/docs/hub/en/security-tokens)
 >**Note:** The Hugging Face API key is not strictly required, it just helps it run smoother.
 ### 4. Run Order
+>*Please only run scripts in `Scripts/`.  
+>All scripts are also fully commented.*
 - **1:  Scraping** (`Scripts/Scraping.ipynb`) 
 - **2:  Sentiment** (`Scripts/Sentiment.ipynb`)
 - **3: Graphs & Regression** (`Scripts/Output.ipynb`)
 
 ## Alignment with course content and assessment instructions
 
-- **Languages used:** All **python**, except for some **SQL** use for the creation and calculation of new columns, python could have been used instead but I chose to do it in SQL to further demonstrate skills learned in this module. **Git/Bash** used for github.
+- **Languages used:** All **python**, except for some **SQL** used for the creation and calculation of new columns, python could have been used instead but I chose to do it in SQL to further demonstrate skills learned in this module. **Git/Bash** used for github.
 - **Unit 5 Content:** Web scraping via APIs, however this still required calling html requests and then cleaning/parsing HTML with Beautifulsoup. Regression models with dummy variables, interaction terms, and accounting for for heteroskedasticity (HC3).
 
 ## References
+Please see references PDF in main.
