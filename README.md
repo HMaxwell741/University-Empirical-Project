@@ -1,4 +1,4 @@
-# How market sentiment has changed with oil during the course of the Iran war (2026)
+# How has market sentiment changed with oil during the course of the 2026 Iran war?
 
 Welcome, this is my university empirical project for module BEE2041 Data Science in Economics.
  
