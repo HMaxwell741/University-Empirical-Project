@@ -4,7 +4,7 @@ Dep. Variable:         sentiment_mean   R-squared:                       0.728
 Model:                            OLS   Adj. R-squared:                  0.702
 Method:                 Least Squares   F-statistic:                     10.92
 Date:                Tue, 21 Apr 2026   Prob (F-statistic):           4.05e-06
-Time:                        21:38:57   Log-Likelihood:                 43.550
+Time:                        22:04:34   Log-Likelihood:                 43.550
 No. Observations:                  46   AIC:                            -77.10
 Df Residuals:                      41   BIC:                            -67.96
 Df Model:                           4                                         
