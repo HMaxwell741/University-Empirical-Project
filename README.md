@@ -52,6 +52,7 @@ pip install requests pandas beautifulsoup4 sentence-transformers python-dateutil
 > **Note:** First run model downloads may take a few minutes.
 
 ### 3. Set up API keys
+> **Note:** You can skip the entire `Scripts/Scraping.ipynb` and just run the other 2 scripts (sentiment and ouput) using pre-complied data. This will save you having to create API keys.
 
 Create an `.env` file, and fill it with your keys. Ensure file name is `.env`
 
