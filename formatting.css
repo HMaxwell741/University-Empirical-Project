@@ -1,0 +1,13 @@
+body {font-family:Arial, Helvetica, sans-serif;
+color: #140e0e; line-height: 1.6;
+}
+
+h2 {border-bottom: 2px #002173; text-decoration: underline;}
+
+img {border-radius: 5px; width: 90%}
+
+figcaption {text-align: center;
+font-style: italic}
+
+table {background-color: #abc0f5;}
+td {border-bottom: #140e0e;}
