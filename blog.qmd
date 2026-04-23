@@ -1,0 +1,150 @@
+---
+title: 'How has market sentiment changed with oil during the course of the 2026 Iran war?'
+subtitle: 'Study since the start of the Iran war'
+title-block-banner: "#002173"
+title-block-style: default
+css: formatting.css
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+    code-links:
+      - text: Github
+        icon: file-code
+        href: https://github.com/HMaxwell741/University-Empirical-Project
+author:
+ - name: 'Harrison Maxwell'
+   affiliation: 'University of Exeter'
+date: today
+---
+
+## Introduction
+
+The Iran war formally began on the 28th February 2026 after US strikes on Iran, and as investors feared, it has had major implications on the global supply of oil. This mainly centres on Iran's hold of the strait of Hormuz, a narrow waterway through which 20 million barrels of oil previously passed through each day. This amounted to a pre-war daily average of 138 ships passing through. However, as the conflict has progressed, and with the straight shutting, the daily numbers of ships passing through the straight has often failed to reach even double digits, a far cry from pre war figures.This has subsequently caused major oil price hikes and supply constraints, as well as widespread fear in both frontpage news and financial markets.
+
+The events of this war and the ensuing oil shock, along with its implications on the broader market, have been covered heavily by news agencies. What if we could easily track how it is covered, by calculating how positive or negative the news is, i.e. the news sentiment? This blog therefore aims to create the necessary code, and then discuss  the findings of this research question:
+
+*How has market sentiment changed with oil during the course of the 2026 Iran war?*
+
+We will see if sentiment aligns well with key events, if it can be used as a measure of fear, its relation with oil, and what factors, if any, can help us predict tomorrow's sentiment.
+
+In order to do this, we have done the following:
+
+* Collect relevant news stories and financial data from API’s.
+* Use NLP models to calculate sentiment scores.
+* Explore any relationships through graphs and regression modelling.
+
+*Note:*
+: *The code has not been run since my project upload deadline, thus it will not contain details of relevant events post this date.*
+
+## Collecting Data
+
+Ideally, a single paid API could have provided all the data for this project. But for replicatability (and cost), all APIs chosen must be free. However, when navigating each free news API, each had their own limitations, thus we used three in combination.
+
+* The Guardian Open Platform API was the first used. It's completely free of charge, and allows custom searches back to the war's start date (we searched for Iran, oil, markets ect). While it returns both headlines and body text in a dictionary, BeautifulSoup was required for HTML parsing for the tags in body text. Additionally, it does not give us access to the most recent articles.
+
+* Alpha Vantage was used to get the most recent news headlines and summaries from articles on the war and markets through its NEWS_SENTIMENT endpoint. It allows us to search via predefined categories (we chose energy_transportation, financial_markets, economy_macro, and finance).
+
+* Finally, NewsAPI was used as it scrapes data from 150,000 worldwide sources providing excellent new data. However, the free tier only goes back one month, thus we run the script daily to keep appending to a csv and build up a dataset that goes beyond the one month limit.
+
+For data on financial markets, yfiance was used to collect Brent and WTI Crude prices daily, as well as CBOE Crude Oil Volatility Index (OVX) values, the CBOE Volatility Index (VIX) values, and the S&P 500 index. A reusable function was built to get the data, create an average daily price (of its open and close price), and to fill any non trading days with the previous days closing price using ffill(). 
+
+### Ensuring Relevancy
+
+Even with our targeted searches on the conflict and markets, some irrelevant articles were getting through. To address this, we filter by relevance using a sentence transformer. The all-MiniLM-L6-v2 model was chosen, and each article headline was compared against an embedded reference sentence describing the topic. Articles below a certain cosine similarity were then discarded.
+
+### Sentiment Calculations
+
+For the sentiment analysis itself, we chose the ProsusAI/FinBERT model. It is pre-trained on 4.9 billion tokens of financial text, and has an accurate understanding of financial language and context. It returns the probability of text being positive, neutral, and negative. This was converted into a single score but taking the positive score as a positive score, the negative as a negative score, and neutral as 0. The model was then run over each headline and article text, and an average was made.
+
+Note
+: Data processing was handled with both Python and SQL, with SQL being used to transform columns via functions such as LAG to find percentage changes and moving averages.
+
+
+## Data findings
+
+The chart below provides an overview of sentiment over the course of the war, as well as both Brent and WTI crude prices.
+
+![Figure 1: An overveiw of sentiment and oil prices](/Outputs/Graphs/Overveiw.png){width=85% fig-align="center"}
+
+Immediately, we can see sustained negative sentiment since the start of the war. This reflects coverage of collapsing shipping through the straight as well as oil supply constraints and its implications. We also see that oil rose roughly 55%, moving from $70 USD to over $110 USD per barrel.
+
+Figure 1 also marks some key events that our model picked up, thus causing swings in sentiment (better seen on figure 2).  Trump's announcement of talks had a small but short lived effect. The ceasefire announcement, followed by the US naval blockade of the strait, caused the largest negative swing. 
+
+![Figure 2: Sentiment breakdown via headline only, body text only, and average](Outputs/Graphs/Sentiments.png)
+
+Exploring sentiment by itself, we again see sustained negatively followed by those sharp swings, which are clearer to see now. When comparing the sentiment of headlines alone, against article text alone and an average of the 2, we see that headlines were consistently more extreme in their scores. This results in journalists writing headlines to attract attention to the article. For our later analysis, we used the average of headlines and article text.
+
+![Figure 3: Inversed sentiment as fear vs OVX](Outputs/Graphs/OVX_vs_news_sentiment.png)
+
+One area of research was comparing our sentiment analysis to other measures of fear. Here we show the CBOE Crude Oil Volatility Index (OVX), which measures expected 30 day volatility of crude oil as it is used as a ‘fear gauge’ surrounding oil. We compare this to an inverted sentiment score, so that higher is more fearful, aligning with OVX values.
+
+We see that sentiment ‘fear’ led OVX values, with ‘fear’ already being high before OVX spiked. This reflects that public information and speculation about the conflict was already being shared in the news, and it took time for markets to decide and fully price it in. As OVX caught up, news fear had fallen slightly. We also see sentiment fear spikes well before an OVX movement  in regards to the US naval blockade, perhaps journalists and investors see this differently.
+
+![Figure 4: OVX vs VIX](Outputs/Graphs/OVX_vs_VIX.png)
+
+We now compare OVX to the CBOE Volatility Index (VIX), which acts as a broader ‘fear gauge; for the entire market. We can clearly see a huge difference, with OVX spiking near 120, over 4x the VIX. This reflects that investors feared an oil shock, not a broader market crash.
+
+![Figure 5: Sentiment and lagged oil](Outputs/Graphs/sentiment_vs_wti.png)
+
+Compared sentiment scores (inverted again) to lagged WTI values, we can see if yesterday's oil has an impact on today's sentiment. We see a trend similar to sentient and OVX, with sentiment already being fearful.
+
+
+## Regression Modeling
+
+### Initial Naive Model
+
+Our first model attempts to predict today's sentiment using yesterday's oil price, yesterday's market fear, and yesterday's sentiment. There is little transformation beyond lagged values, this is intended as an initial exploration to build upon.
+
+| **Item**  | **Coef**  | **P>[z]** | **Significant?** |
+|--------|--------|--------|--------|
+| const  | -.0408 | 0.871 | no |
+| Lagged_wti   | 0.0025 | 0.325 | no |
+| lagged_vix | -0.0156 | 0.061 | no|
+| lagged_sentiment_mean | 0.0712 | 0.672 | no| 
+
+: **Naive regression results (figure 6):** R^2^: 0.104 Adj. R^2^: 0.040 {.striped .hover}
+
+
+The naive model fails, rather spectacularly. The R^2^ of 10.4% collapses to 4% when using adjusted R^2^, reflecting that we explain little of the variation in daily average sentiment. Additionally, no variable is statistically significant. Even if they were, a 1 dollar increase in yesterday's oil price would change sentiment by 0.003. Clearly then, oil prices alone do not drive news sentiment, there is far greater depth.
+
+### Improved Model
+
+This model attempts to improve upon the first model in 4 key ways.
+
+* **Disagreement:** When sources disagree about events, with some more fearful than others, can this help predict tomorrow's tone?
+
+* **Momentum:** Does sentiment persist? For example, If yesterday was highly negative, is today also likely to be?
+
+* **Market regime:** A dummy/binary variable set 1 one if VIX is high, or 0 if VIX is low.
+
+* **HC3:** Improving the model with HC3 robust errors.
+
+| **Item**  | **Coef**  | **P>[z]** | **Significant?** |
+|--------|--------|--------|--------|
+| const  | -0.5156 | 0.000 | yes |
+| Lagged_wti   | 0.0021 | 0.115 | no |
+| High_vix_dummy | -0.0295 | 0.365 | no |
+| Disagreement | 0.0061 | 0.000 | yes |
+| Momentum | 0.4954 | 0.001 | yes |
+
+: **Improved regression results (figure 7):** R^2^: 0.728 Adj. R^2^: 0.702 {.striped .hover}
+
+
+This model increases our R^2^ to 73% and our adjusted R^2^ to 70%, a significant improvement. The model is also highly jointly significant.
+
+Momentum is statistically significant, and has a coefficient of 0.495. Thus yesterday's sentiment is a strong predictor of today's, which makes sense as the conflict was ongoing. Disagreement was also statistically significant, with a coefficient of 0.06. When journalists have conflicting views, the sentiment tends to be more positive. Whereas if journalists agree, the sentiment is more negative. This does make sense intuitively, as a clear negative event gives less room for speculation.
+
+The high vix dummy was statistically insignificant, suggesting broader market fears do not alter oil related financial sentiment. This links to figure 4, as again the war was largely perceived as an energy shock.
+
+
+## Conclusions
+
+* The sentiment that we calculated tracks market events, correctly identifying events such as the US naval blockade, or when peace talks were announced.
+
+* Sentiment can be predicted, although oil prices do not help with this, there are many wider aspects that contribute. This result may be partly due to our limitations, as we chose to conduct our study over the Iran war, this gives us a small sample size in our analysis.
+
+* News sentiment leads to market volatility, with markets taking time to speculate and fully price in the events being reported. This makes sentiment scoring an effective ‘fear gauge’.
+
+* The war was an energy shock, and was not interpreted as a larger financial crisis. This is clearly seen with OVX being consistently higher than VIX (by up to 4x) throughout the course of the conflict/study.
