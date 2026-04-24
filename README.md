@@ -23,7 +23,7 @@ This README covers how to run the code as well as a brief overview and its links
 >All scripts are also fully commented.*
 
 Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data.
->*Runtime*:  Around 6 minutes due to rate limiting
+>*Runtime*:  Around 7 minutes due to rate limiting
 
 Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our another NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated per day, and SQL is used to create new columns such as moving averages or lagging.
 >*Runtime*: Around 2 min on a average laptop (NLP models)
