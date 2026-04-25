@@ -109,7 +109,6 @@ One area of research was comparing our sentiment analysis to other measures of f
 
 We see that sentiment ‘fear’ led OVX values, with ‘fear’ already being high before OVX spiked. This reflects that public information and speculation about the conflict was already being shared in the news, and that it took time for markets to fully price it in. As OVX caught up, news fear had fallen slightly. We also see that sentiment fear spikes well before any OVX movement regarding the US naval blockade. Perhaps journalists and investors interpret events differently.
 
-
 ![Figure 4: OVX vs VIX](Outputs/Graphs/OVX_vs_VIX.png)
 
 We now compare OVX to the CBOE Volatility Index (VIX), which acts as a broader ‘fear gauge’ for the entire market. We can clearly see a huge difference, with OVX being consistently higher than the VIX at all points in time. Additionally, OVX spiked at nearly 120, over 4x the value of the VIX. This reflects that investors feared an oil shock, not a broader market crash.
@@ -126,17 +125,13 @@ In order to substantiate our findings, we use regression modelling. However, as 
 
 Our first model attempts to predict today’s sentiment using yesterday’s oil price, yesterday’s market fear, and yesterday’s sentiment. There is little data transformation occurring beyond lagged values as this is intended as an initial exploration to build upon.
 
-| **Item**  | **Coef**  | **P>[z]** | **Significant?** |
-|--------|--------|--------|--------|
-| const  | -0.6406 | 0.002 | no |
-| Lagged_wti   | 0.0044 | 0.034 | yes |
-| lagged_vix | -0.0025 | 0.681 | no|
-| lagged_sentiment_mean | -0.0800 | 0.534 | no|
-
-: **Naive regression results (Figure 6):** R^2^: 0.081 Adj. R^2^: 0.032 {.striped .hover}
-
+![Figure 6: Naive Regression Model, R^2^: 0.081 Adj. R^2^: 0.032](Outputs/Table/Regression1.png)
 
 The naive model fails. The R^2^ of 8% collapses to 3% when using adjusted R^2^, reflecting that we explain little of the variation in daily average sentiment. Additionally, only lagged_wti is statistically significant, with a 1 dollar increase in yesterday’s oil price would decrease sentiment by 0.0044. Clearly, oil prices alone do not drive news sentiment, there is far greater depth.
+
+:::{.callout-note}
+**Note:** These regression tables will autoupdate from the code! (and so will the graphs).
+:::
 
 ### Improved Model
 
@@ -150,15 +145,7 @@ This model attempts to improve upon the first model in four key ways.
 
 * **HC3:** Improving the model with HC3 robust errors.
 
-| **Item**  | **Coef**  | **P>[z]** | **Significant?** |
-|--------|--------|--------|--------|
-| const  | -0.6178 | 0.000 | yes |
-| Lagged_wti   | 0.0033 | 0.017 | yes |
-| High_vix_dummy | -0.0204 | 0.444 | no |
-| Disagreement | 0.0028 | 0.000 | yes |
-| Momentum | 0.4624 | 0.000 | yes |
-
-: **Improved regression results (Figure 7):** R^2^: 0.663 Adj. R^2^: 0.638 {.striped .hover}
+![Figure 7: Improved Regression Model, R^2^: 0.663 Adj. R^2^: 0.638](Outputs/Table/Regression2.png)
 
 This model increases our R^2^ to 66% and our adjusted R^2^ to 64%, a significant improvement. The model is also highly jointly significant.
 
