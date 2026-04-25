@@ -1,5 +1,6 @@
 # How has market sentiment changed with oil during the course of the 2026 Iran war?
 
+**Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog.html
 
 Welcome, this is my university empirical project for module BEE2041 Data Science in Economics.
 
@@ -23,7 +24,7 @@ This project is in no way linked to politics or beliefs, it just examines what h
 
 This README covers how to run the code as well as a brief overview and its links to the course for my examiner.
 
->  **Link to blog:**  *(still need to make it)*
+**Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog.html
 
   
 
