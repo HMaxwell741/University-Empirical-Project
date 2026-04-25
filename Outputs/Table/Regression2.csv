@@ -1,27 +1,27 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:         sentiment_mean   R-squared:                       0.728
-Model:                            OLS   Adj. R-squared:                  0.702
-Method:                 Least Squares   F-statistic:                     10.92
-Date:                Fri, 24 Apr 2026   Prob (F-statistic):           4.05e-06
-Time:                        20:11:46   Log-Likelihood:                 43.550
-No. Observations:                  46   AIC:                            -77.10
-Df Residuals:                      41   BIC:                            -67.96
+Dep. Variable:         sentiment_mean   R-squared:                       0.663
+Model:                            OLS   Adj. R-squared:                  0.638
+Method:                 Least Squares   F-statistic:                     88.75
+Date:                Sat, 25 Apr 2026   Prob (F-statistic):           2.53e-23
+Time:                        19:27:30   Log-Likelihood:                 53.561
+No. Observations:                  60   AIC:                            -97.12
+Df Residuals:                      55   BIC:                            -86.65
 Df Model:                           4                                         
 Covariance Type:                  HC3                                         
 ==================================================================================
                      coef    std err          z      P>|z|      [0.025      0.975]
 ----------------------------------------------------------------------------------
-const             -0.5156      0.126     -4.080      0.000      -0.763      -0.268
-lagged_wti         0.0021      0.001      1.576      0.115      -0.001       0.005
-high_vix_dummy    -0.0295      0.033     -0.906      0.365      -0.093       0.034
-disagreement       0.0061      0.001      5.964      0.000       0.004       0.008
-momentum           0.4954      0.149      3.334      0.001       0.204       0.787
+const             -0.6178      0.112     -5.506      0.000      -0.838      -0.398
+lagged_wti         0.0033      0.001      2.386      0.017       0.001       0.006
+high_vix_dummy    -0.0204      0.027     -0.765      0.444      -0.073       0.032
+disagreement       0.0028      0.000      6.738      0.000       0.002       0.004
+momentum           0.4624      0.055      8.383      0.000       0.354       0.571
 ==============================================================================
-Omnibus:                        2.356   Durbin-Watson:                   1.472
-Prob(Omnibus):                  0.308   Jarque-Bera (JB):                1.675
-Skew:                           0.462   Prob(JB):                        0.433
-Kurtosis:                       3.140   Cond. No.                         881.
+Omnibus:                        7.658   Durbin-Watson:                   1.417
+Prob(Omnibus):                  0.022   Jarque-Bera (JB):               12.029
+Skew:                           0.307   Prob(JB):                      0.00244
+Kurtosis:                       5.106   Cond. No.                         735.
 ==============================================================================
 
 Notes:
