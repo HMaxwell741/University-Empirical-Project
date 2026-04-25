@@ -95,7 +95,7 @@ pip  install  requests  pandas  beautifulsoup4  sentence-transformers  python-da
 
 newsapi-python  python-dotenv  yfinance  transformers  torch  statsmodels
 
-matplotlib  scikit-learn  scipy  huggingface_hub  folium
+matplotlib  scikit-learn  scipy  huggingface_hub  folium jupyter
 
 ```
 
