@@ -4,7 +4,7 @@ Dep. Variable:                    wti   R-squared:                       0.236
 Model:                            OLS   Adj. R-squared:                  0.181
 Method:                 Least Squares   F-statistic:                     2.527
 Date:                Sat, 25 Apr 2026   Prob (F-statistic):             0.0509
-Time:                        19:27:30   Log-Likelihood:                -223.99
+Time:                        21:44:44   Log-Likelihood:                -223.99
 No. Observations:                  60   AIC:                             458.0
 Df Residuals:                      55   BIC:                             468.4
 Df Model:                           4                                         
