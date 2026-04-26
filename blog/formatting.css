@@ -1,0 +1,26 @@
+body {font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: #2a2a2a; background-color: #fefefb;
+line-height: 1.75;}
+
+h1 {font-family: sans-serif;}
+#TOC {font-family: sans-serif;}
+h2 {font-family: sans-serif; color: #000000;}
+h3 {color: #000000;}
+img {width: 100%; height: auto;}
+
+figcaption {text-align: center;
+font-style: italic}
+
+table {background-color: #d2efff;}
+td {border-bottom: 1px solid #140e0e;}
+
+.quarto-title-block {
+  align-self: center;
+}
+
+.quarto-title-meta {font-family: sans-serif;}
+.quarto-title-meta-author {font-family: sans-serif;}
+.title-block-header {align-self: center;}
+
+.page-columns {
+  max-width: 3000px;}
