@@ -1,6 +1,6 @@
 # How has market sentiment changed with oil during the course of the 2026 Iran war?
 
-**Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog.html
+**Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog/blog.html
 
 Welcome, this is my university empirical project for module BEE2041 Data Science in Economics.
 
@@ -10,9 +10,12 @@ This is a data driven research project on how financial news sentiment changed d
 -   Use NLP models to calculate sentiment scores.
 -   Explore any relationships through graphs and regression modelling.
 
-I have created the code necessary to do this, and then a final output in the form of a blog post using Quarto.
+I have created the code necessary to do this, and then a final output in the form of a blog post using Quarto. These figures will auto update if you run the blog.qmd file and preview it. Although the final gitpages blog post link wont be changed unless you push the new blog.html (no need to do this, just use my link in the (blog link and data/) or in the README.
 
 This project is in no way linked to politics or beliefs, it just examines what has happened through accessible news and market data.
+
+Best,
+Harrison
 
   
 
@@ -24,7 +27,9 @@ This project is in no way linked to politics or beliefs, it just examines what h
 
 This README covers how to run the code as well as a brief overview and its links to the course for my examiner.
 
-**Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog.html
+**Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog/blog.html
+
+The blog has an introduction for the research topic, discussing our code and collection data, our data findings and graphs, regression models, limitations, and then a conclusion.
 
   
 
@@ -34,7 +39,7 @@ This README covers how to run the code as well as a brief overview and its links
 
 - [Overview](#Overveiw)
 
-- [Setup & Replicatability](#Setup-&-Replicatability)
+- [Setup & Replicability](#Setup-&-Replicability)
 
 - [Alignment with course content and assessment instructions](#Alignment-with-course-content-and-assessment-instructions)
 
@@ -44,7 +49,7 @@ This README covers how to run the code as well as a brief overview and its links
 
 ## Overview
 
->*Please only run scripts in `Scripts/`. All scripts are also fully commented.*
+>*All scripts are also fully commented.*
 
   
 
@@ -64,15 +69,18 @@ Script 3 (`Scripts/Output.ipynb`) uses our dataset from script 2 to generate our
 
   
 
-## Setup & Replicatability
+## Setup & Replicability
 
   
 
->**Note:** I am using Python 3.14 as the kernal, I have also tested it on 3.13.
+>**Note:** I am using Python 3.14 as the kernel, I have also tested it on 3.13.
 
-  
+ I have used make files to automate the process. There are 2 options:
 
-### 1. Clone the repository
+- **Option 1:** you will need api keys to run all 3 scripts. 
+- **Option 2:** this wont need API keys, as you will just run sentiment and outputs scripts using pre compiled date, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
+
+### 1. Clone the repository (general to both methods)
 
   
 
@@ -84,35 +92,13 @@ cd  University-Empirical-Project
 
 ```
 
-  
+### 3. Set up API keys (if using option 1, thus all 3 scripts and need API keys)
 
-### 2. Install dependencies
-
-  
-
-```bash
-
-pip  install  requests  pandas  beautifulsoup4  sentence-transformers  python-dateutil
-
-newsapi-python  python-dotenv  yfinance  transformers  torch  statsmodels
-
-matplotlib  scikit-learn  scipy  huggingface_hub  folium jupyter
-
-```
+>**Note:** If using option 2, you can skip his set, as you will just run sentiment and outputs scripts, not the scraping scrip, thus you will not need API keys
 
   
 
->  **Note:** First run model downloads may take a few minutes.
-
-  
-
-### 3. Set up API keys
-
->  **Note:** You can skip the entire `Scripts/Scraping.ipynb` and just run the other 2 scripts (sentiment and output) using pre-complied data. This will save you having to create API keys.
-
-  
-
-Create an `.env` file, and fill it with your keys. Ensure file name is `.env`
+Create an `.env` file, and fill it with your keys. Ensure file name is `.env`. Ensure it is not in any further folders (But is still within the main local repo folder of course)
 
   
 
@@ -148,19 +134,19 @@ All keys are free, you can sign up for your own key at the following links. One 
 
 >**Note:** The Hugging Face API key is not strictly required, it just helps it run smoother.
 
-### 4. Run Order
+### 4. Run
+>*All scripts are also fully commented.*
 
->  **Note:** You can skip the entire `Scripts/Scraping.ipynb` and just run the other 2 scripts (sentiment and output) using pre-complied data. This will save you having to create API keys.
-
->*Please only run scripts in `Scripts/`. All scripts are also fully commented.*
-
--  **1: Scraping** (`Scripts/Scraping.ipynb`)
-
--  **2: Sentiment** (`Scripts/Sentiment.ipynb`)
-
--  **3: Graphs & Regression** (`Scripts/Output.ipynb`)
-
-  
+**Option 1 (3 scripts and API keys setup, ensure ```.env``` file is setup)**
+```
+pip install papermill
+python Make/Make_with_API.py
+```
+**Option 2 (Saving time using pre complied date, no API keys, just sentiment and output scripts)**
+```
+pip install papermill
+python Make/Make_no_api.py
+```
 
 ## Alignment with course content and assessment instructions
 
@@ -175,6 +161,3 @@ All keys are free, you can sign up for your own key at the following links. One 
 ## References
 
 Please see references PDF in main.
-
-Best,
-Harrison
