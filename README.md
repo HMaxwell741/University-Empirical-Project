@@ -139,7 +139,8 @@ All keys are free, you can sign up for your own key at the following links. One 
 >**Note:** The Hugging Face API key is not strictly required, it just helps it run smoother.
 
 ### 3. Run
-> **All pip install commands are located inside the make files for your ease of use**, other than papermill which is installed before. 
+> **All pip install commands are located inside the make files for your ease of use**, other than papermill which is installed before.
+
 > **Here is a list of what is installed:** papermill, requests, pandas, beautifulsoup4, sentence-transformers, python-dateutil, newsapi-python, python-dotenv, yfinance, transformers, torch, statsmodels, matplotlib, scikit-learn, scipy, huggingface_hub, folium, and jupyter.
 
 **Option 1 (3 scripts and API keys setup, ensure ```.env``` file is setup)**
