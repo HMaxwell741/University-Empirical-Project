@@ -9,15 +9,15 @@ subprocess.check_call(['pip', 'install','papermill','requests', 'pandas','beauti
 print('Libraries all installed')
 print('Running Scripts, will update after each script complete, this may take a couple of minutes (see README)')
 
-pm.execute_notebook('Scripts/Scraping.ipynb', output_path='Scripts/Scraping.ipynb', cwd='.')
+pm.execute_notebook('Scripts/Scraping.ipynb', output_path='Scripts/Scraping.ipynb', cwd='Scripts')
 
 print('Scraping complete')
 
-pm.execute_notebook('Scripts/Sentiment.ipynb', output_path='Scripts/Sentiment.ipynb', cwd='.')
+pm.execute_notebook('Scripts/Sentiment.ipynb', output_path='Scripts/Sentiment.ipynb', cwd='Scripts')
 
 print ('Sentiment complete')
 
-pm.execute_notebook('Scripts/Outputs.ipynb', output_path='Scripts/Outputs.ipynb', cwd='.')
+pm.execute_notebook('Scripts/Outputs.ipynb', output_path='Scripts/Outputs.ipynb', cwd='Scripts')
 
 print('outputs complete')
 
