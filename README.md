@@ -49,7 +49,7 @@ The blog has an introduction for the research topic, discussing our code and col
 
 ## Overview
 
->*All scripts are also fully commented.*
+>**All scripts are also fully commented.**
 
   
 
@@ -65,7 +65,7 @@ Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our another NLP mo
 
   
 
-Script 3 (`Scripts/Output.ipynb`) uses our dataset from script 2 to generate our outputted graphs and regression models.
+Script 3 (`Scripts/Outputs.ipynb`) uses our dataset from script 2 to generate our outputted graphs and regression models.
 
   
 
@@ -75,10 +75,14 @@ Script 3 (`Scripts/Output.ipynb`) uses our dataset from script 2 to generate our
 
 >**Note:** I am using Python 3.14 as the kernel, I have also tested it on 3.13.
 
- I have used make files to automate the process. There are 2 options:
+ I have used make files to automate the process.  All pip install commands and requirements are covered within the make files for ease of use (other than ```pip install papermill``` which is detailed separately, all details below). 
+
+If you wish to re-render the html, you will also require quarto, although this is not required for reproducing the code.
+
+**There are 2 options:**
 
 - **Option 1:** you will need api keys to run all 3 scripts. 
-- **Option 2:** this wont need API keys, as you will just run sentiment and outputs scripts using pre compiled date, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
+- **Option 2:** this wont need API keys, as you will just run sentiment and outputs scripts using precompiled date, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
 
 ### 1. Clone the repository (general to both methods)
 
@@ -92,9 +96,9 @@ cd  University-Empirical-Project
 
 ```
 Then open the folder ```University-Empirical-Project```
-### 3. Set up API keys (if using option 1, thus all 3 scripts and need API keys)
+### 2. Set up API keys (if using option 1, thus all 3 scripts and need API keys)
 
->**Note:** If using option 2, you can skip this step, as you will just run sentiment and outputs scripts, not the scraping scrip, thus you will not need API keys
+>**Note:** If using option 2, you can skip this step, as you will just run sentiment and outputs scripts, not the scraping script, thus you will not need API keys
 
   
 
@@ -134,8 +138,9 @@ All keys are free, you can sign up for your own key at the following links. One 
 
 >**Note:** The Hugging Face API key is not strictly required, it just helps it run smoother.
 
-### 4. Run
->*All scripts are also fully commented.*
+### 3. Run
+> **All pip install commands are located inside the make files for your ease of use**, other than papermill which is installed before. 
+> **Here is a list of what is installed:** papermill, requests, pandas, beautifulsoup4, sentence-transformers, python-dateutil, newsapi-python, python-dotenv, yfinance, transformers, torch, statsmodels, matplotlib, scikit-learn, scipy, huggingface_hub, folium, and jupyter.
 
 **Option 1 (3 scripts and API keys setup, ensure ```.env``` file is setup)**
 ```
@@ -160,4 +165,4 @@ python Make/Make_no_api.py
 
 ## References
 
-Please see references PDF in main.
+Please see pdf copy of reference in main.
