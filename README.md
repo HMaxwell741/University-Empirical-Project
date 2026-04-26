@@ -91,7 +91,7 @@ git  clone  https://github.com/HMaxwell741/University-Empirical-Project.git
 cd  University-Empirical-Project
 
 ```
-
+Then open the folder ```University-Empirical-Project```
 ### 3. Set up API keys (if using option 1, thus all 3 scripts and need API keys)
 
 >**Note:** If using option 2, you can skip his set, as you will just run sentiment and outputs scripts, not the scraping scrip, thus you will not need API keys
