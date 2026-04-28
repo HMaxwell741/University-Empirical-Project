@@ -1,0 +1,27 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:         sentiment_mean   R-squared:                       0.094
+Model:                            OLS   Adj. R-squared:                  0.048
+Method:                 Least Squares   F-statistic:                     2.034
+Date:                Tue, 28 Apr 2026   Prob (F-statistic):              0.119
+Time:                        09:07:36   Log-Likelihood:                 20.002
+No. Observations:                  63   AIC:                            -32.00
+Df Residuals:                      59   BIC:                            -23.43
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================
+                            coef    std err          t      P>|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+const                    -0.5299      0.207     -2.564      0.013      -0.943      -0.116
+lagged_wti                0.0046      0.002      2.137      0.037       0.000       0.009
+lagged_vix               -0.0056      0.006     -0.915      0.364      -0.018       0.007
+lagged_sentiment_mean     0.0981      0.128      0.765      0.448      -0.159       0.355
+==============================================================================
+Omnibus:                        4.889   Durbin-Watson:                   1.496
+Prob(Omnibus):                  0.087   Jarque-Bera (JB):                4.555
+Skew:                          -0.367   Prob(JB):                        0.103
+Kurtosis:                       4.093   Cond. No.                         888.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
