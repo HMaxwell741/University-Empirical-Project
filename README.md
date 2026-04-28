@@ -10,7 +10,7 @@ This is a data driven research project on how financial news sentiment changed d
 -   Use NLP models to calculate sentiment scores.
 -   Explore any relationships through graphs and regression modelling.
 
-I have created the code necessary to do this, and then a final output in the form of a blog post using Quarto. These figures will auto update if you run the blog.qmd file and preview it. Although the final gitpages blog post link wont be changed unless you push the new blog.html (no need to do this, just use my link in the (blog link and data/) or in the README.
+I have created the code necessary to do this, and then a final output in the form of a blog post using Quarto. These figures will auto update if you run the blog.qmd file and preview it. Although the final gitpages blog post link wont be changed unless you push the new blog.html (no need to do this, just use my link in the (blog link and data/) or in the README).
 
 This project is in no way linked to politics or beliefs, it just examines what has happened through accessible news and market data.
 
@@ -29,7 +29,7 @@ This README covers how to run the code as well as a brief overview and its links
 
 **Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog/blog.html
 
-The blog has an introduction for the research topic, discussing our code and collection data, our data findings and graphs, regression models, limitations, and then a conclusion.
+The blog introduces my research topic, discusses my code and data collection, data findings and graphs, regression models, limitations, and then a conclusion.
 
   
 
@@ -55,11 +55,11 @@ The blog has an introduction for the research topic, discussing our code and col
 
 Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data.
 
->*Runtime*: Around 7 minutes due to rate limiting
+>*Runtime*: Around 8 minutes due to rate limiting
 
   
 
-Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our another NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated per day, and SQL is used to create new columns such as moving averages or lagging.
+Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our other NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated by day, and SQL is used to create new columns such as moving averages or lagging.
 
 >*Runtime*: Around 2 min on a average laptop (NLP models)
 
@@ -71,18 +71,18 @@ Script 3 (`Scripts/Outputs.ipynb`) uses our dataset from script 2 to generate ou
 
 ## Setup & Replicability
 
-  
-
->**Note:** I am using Python 3.14 as the kernel, I have also tested it on 3.13.
+>**Note:** I am using Python 3.13 as the kernel, I have also tested it on 3.14. These are Jupyter scripts, and the install of Jupyter is handled in the make files.
 
  I have used make files to automate the process.  All pip install commands and requirements are covered within the make files for ease of use (other than ```pip install papermill``` which is detailed separately, all details below). 
 
-If you wish to re-render the html, you will also require quarto, although this is not required for reproducing the code.
+If you wish to re-render the blog, you will also require quarto, although this is not required for reproducing the code.
 
 **There are 2 options:**
 
 - **Option 1:** you will need api keys to run all 3 scripts. 
-- **Option 2:** this wont need API keys, as you will just run sentiment and outputs scripts using precompiled date, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
+- **Option 2:** this wont need API keys, as you will just run the sentiment and outputs scripts using precompiled data, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
+
+> If for whatever reason there is an external API connection issue (which is beyond my control), or if you hit a rate limit, please just revert to using option 2. It will run using all premade data which was saved from a normal run.
 
 ### 1. Clone the repository (general to both methods)
 
@@ -98,7 +98,7 @@ cd  University-Empirical-Project
 Then open the folder ```University-Empirical-Project```
 ### 2. Set up API keys (if using option 1, thus all 3 scripts and need API keys)
 
->**Note:** If using option 2, you can skip this step, as you will just run sentiment and outputs scripts, not the scraping script, thus you will not need API keys
+>**Note:** If using option 2, you can skip this step, as you will just run sentiment and outputs scripts, not the scraping script, thus you will not need API keys.
 
   
 
@@ -147,12 +147,14 @@ All keys are free, you can sign up for your own key at the following links. One 
 
 **Option 1 (3 scripts and API keys setup, ensure ```.env``` file is setup)**
 ```
-pip install papermill
+python -m pip install --upgrade pip
+python -m pip install papermill
 python Make/Make_with_API.py
 ```
 **Option 2 (Saving time using pre complied date, no API keys, just sentiment and output scripts)**
 ```
-pip install papermill
+python -m pip install --upgrade pip
+python -m pip install papermill
 python Make/Make_no_api.py
 ```
 
