@@ -162,7 +162,7 @@ python Make/Make_no_api.py
 
 -  **Languages used:** All **python**, except for some **SQL** used for the creation and calculation of new columns, python could have been used instead but I chose to do it in SQL to further demonstrate skills learned in this module. **Git/Bash** used for github.
 
--  **Unit 5 Content:** Web scraping via APIs, however this still required calling html requests and then cleaning/parsing HTML with Beautifulsoup. Regression models with dummy variables, interaction terms, and accounting for for heteroskedasticity (HC3).
+-  **Unit 5 Content:** Web scraping via APIs, however this still required calling html requests and then cleaning/parsing HTML with Beautifulsoup. Regression models with dummy variables, interaction terms, and accounting for heteroskedasticity (HC3).
 
   
 
