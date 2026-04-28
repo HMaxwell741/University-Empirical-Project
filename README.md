@@ -1,4 +1,4 @@
-# How has market sentiment changed with oil during the course of the 2026 Iran war?
+# How has market sentiment changed with oil over the course of the 2026 Iran war?
 
 **Blog Link:**  https://hmaxwell741.github.io/University-Empirical-Project/blog/blog.html
 
