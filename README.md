@@ -143,6 +143,8 @@ All keys are free, you can sign up for your own key at the following links. One 
 
 > **Here is a list of what is installed:** papermill, requests, pandas, beautifulsoup4, sentence-transformers, python-dateutil, newsapi-python, python-dotenv, yfinance, transformers, torch, statsmodels, matplotlib, scikit-learn, scipy, huggingface_hub, folium, and jupyter.
 
+>**Note:** First time install of libraries may take a couple of minutes
+
 **Option 1 (3 scripts and API keys setup, ensure ```.env``` file is setup)**
 ```
 pip install papermill
