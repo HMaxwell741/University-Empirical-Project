@@ -127,7 +127,7 @@ Our first model attempts to predict today’s sentiment using yesterday’s oil 
 
 ![Figure 6: Naive Regression Model, R^2^: 0.094 Adj. R^2^: 0.048](../Outputs/Table/Regression1.png)
 
-The naive model fails. The R^2^ of 9% collapses to 5% when using adjusted R^2^, reflecting that we explain little of the variation in daily average sentiment. No variables are statistically significant, including WTI values. Clearly, oil prices alone do not drive news sentiment, there is far greater depth.
+The naive model fails. The R^2^ of 9% collapses to 5% when using adjusted R^2^, reflecting that we explain little of the variation in daily average sentiment. No variables are statistically significant, other than lagged WTI values, although its coefficient was incredibly small. Clearly, oil prices alone do not drive news sentiment, there is far greater depth.
 
 :::{.callout-note}
 **Note:** These regression tables will autoupdate from the code! (and so will the graphs).
