@@ -35,15 +35,11 @@ The blog introduces my research topic, discusses my code and data collection, da
 
 **README Contents:**
 
-- [Introduction](#please-see-blog-for-research-breakdown-findings-and-decision-justification)
-
-- [Overview](#Overveiw)
-
-- [Setup & Replicability](#Setup-&-Replicability)
-
-- [Alignment with course content and assessment instructions](#Alignment-with-course-content-and-assessment-instructions)
-
-- [References](#References)
+-  [Introduction](#how-has-market-sentiment-changed-with-oil-over-the-course-of-the-2026-iran-war)
+- [Overview](#overview)
+-  [Setup & Replicability](#setup--replicability)
+- [Alignment with course content and assessment instructions](#alignment-with-course-content-and-assessment-instructions)
+- [References](#references)
 
   
 
@@ -55,17 +51,16 @@ The blog introduces my research topic, discusses my code and data collection, da
 
 Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data.
 
->*Runtime*: Around 8 minutes due to rate limiting
-
-  
+>*Runtime*: Around 10 min on an average laptop due to rate limiting and relevance model. This run time is far faster on my PC due to better hardware.
 
 Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our other NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated by day, and SQL is used to create new columns such as moving averages or lagging.
 
->*Runtime*: Around 2 min on a average laptop (NLP models)
+>*Runtime*: Around 7 min on a average laptop (due to NLP models, which has been improved via batching). This run time is far faster on my PC due to better hardware.
 
   
 
 Script 3 (`Scripts/Outputs.ipynb`) uses our dataset from script 2 to generate our outputted graphs and regression models.
+>*Runtime:* Negligible.
 
   
 
@@ -80,7 +75,7 @@ If you wish to re-render the blog, you will also require quarto, although this i
 **There are 2 options:**
 
 - **Option 1:** you will need api keys to run all 3 scripts. 
-- **Option 2:** this wont need API keys, as you will just run the sentiment and outputs scripts using precompiled data, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
+- **Option 2:** this wont need API keys, as you will just run the sentiment and outputs scripts using pre-compiled data, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
 
 > If for whatever reason there is an external API connection issue (which is beyond my control), or if you hit a rate limit, please just revert to using option 2. It will run using all premade data which was saved from a normal run.
 
@@ -151,7 +146,7 @@ python -m pip install --upgrade pip
 python -m pip install papermill
 python Make/Make_with_API.py
 ```
-**Option 2 (Saving time using pre complied date, no API keys, just sentiment and output scripts)**
+**Option 2 (Saving time using pre-compiled data, no API keys, just sentiment and output scripts)**
 ```
 python -m pip install --upgrade pip
 python -m pip install papermill
