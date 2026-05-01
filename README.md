@@ -47,20 +47,34 @@ The blog introduces my research topic, discusses my code and data collection, da
 
 >**All scripts are also fully commented.**
 
-  
+**Scripts/**
 
-Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data.
+Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data. This will output all the cleaned data that we need.
 
 >*Runtime*: Around 10 min on an average laptop due to rate limiting and relevance model. This run time is far faster on my PC due to better hardware.
 
-Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our other NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated by day, and SQL is used to create new columns such as moving averages or lagging.
+Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our other NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated by day, and SQL is used to create new columns such as moving averages or lagging. This will output a dataset with sentiment aggregated by day, along with daily values of items such as Brent Oil, as well as some transformed columns such as moving averages.
 
 >*Runtime*: Around 7 min on a average laptop (due to NLP models, which has been improved via batching). This run time is far faster on my PC due to better hardware.
 
-  
-
 Script 3 (`Scripts/Outputs.ipynb`) uses our dataset from script 2 to generate our outputted graphs and regression models.
 >*Runtime:* Negligible.
+
+ **Data/**
+
+My pre-compiled data if you wish to use the run option that does not require you to setup API keys (details below).
+
+**Make/**
+
+Contains two make files, one runs everything but requires API setup, the other runs the sentiment and output script without needed API keys, saving time (details below).
+
+**Outputs/**
+
+Contains all of my graphs and regression tables.
+
+**Blog/**
+
+Contains blog qmd and html files, as well as a formatting css. To access my blog page, please use the link at the top of the README
 
   
 
@@ -90,6 +104,8 @@ git  clone  https://github.com/HMaxwell741/University-Empirical-Project.git
 cd  University-Empirical-Project
 
 ```
+> or ```CD "folder path"```, where folder path is the path you want your folder at.
+
 Then open the folder ```University-Empirical-Project```
 ### 2. Set up API keys (if using option 1, thus all 3 scripts and need API keys)
 
