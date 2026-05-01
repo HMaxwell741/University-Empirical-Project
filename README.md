@@ -4,13 +4,13 @@
 
 Welcome, this is my university empirical project for module BEE2041 Data Science in Economics.
 
-This is a data driven research project on how financial news sentiment changed during the Iran war, as well as how oil and the wider markets reacted. We will see if sentiment aligns well with key events, if it can be used as a measure of fear, its relation with oil, and what factors, if any, can help us predict tomorrow’s sentiment. In order to do this, we have done the following:
+This is a data driven research project on how financial news sentiment changed during the Iran war, as well as how oil and the wider markets reacted. We will see if sentiment aligns well with key events, if it can be used as a measure of fear, its relation with oil, and what factors, if any, can help us predict tomorrow’s sentiment. In order to do this, I have done the following:
 
  -  Collect relevant news stories and financial data from API’s.
 -   Use NLP models to calculate sentiment scores.
 -   Explore any relationships through graphs and regression modelling.
 
-I have created the code necessary to do this, and then a final output in the form of a blog post using Quarto. These figures will auto update if you run the blog.qmd file and preview it. Although the final gitpages blog post link wont be changed unless you push the new blog.html (no need to do this, just use my link in the (blog link and data/) or in the README).
+I have created the code necessary to do this, and then a final output in the form of a blog post using Quarto. The figures in the Quarto document will auto update if you run all scripts then the blog.qmd file and preview it locally. Although the final gitpages blog post link wont be changed unless you push the new blog.html (no need to do this, just use my link in README).
 
 This project is in no way linked to politics or beliefs, it just examines what has happened through accessible news and market data.
 
@@ -51,22 +51,22 @@ The blog introduces my research topic, discusses my code and data collection, da
 
 Script 1 (`Scripts/Scraping.ipynb`) covers scraping and cleaning. It uses 3 API's to get news data (The Guardian Open Platform API, Alpha Vantage, NewsAPI). It then parses HTML, wrangles and cleans data, and runs an NLP model (all-MiniLM-L6-v2) to check for relevancy. It also uses yfinance to get financial data. This will output all the cleaned data that we need.
 
->*Runtime*: Around 10 min on an average laptop due to rate limiting and relevance model. This run time is far faster on my PC due to better hardware.
+>*Runtime*: Depending on your computer, this could take up to 11 min (on an average laptop) due to rate limiting and relevance model. This run time is far faster on more powerful computers.
 
-Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our other NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated by day, and SQL is used to create new columns such as moving averages or lagging. This will output a dataset with sentiment aggregated by day, along with daily values of items such as Brent Oil, as well as some transformed columns such as moving averages.
+Script 2 (`Scripts/Sentiment.ipynb`) merges all data and runs our other NLP model (ProsusAI/finbert) that has been pre trained on financial news data to find the sentiment of each news article. Data is then aggregated by day, and SQL is used to create new columns such as moving averages or lagging. This will output a dataset with sentiment aggregated by day, along with daily values of items such as oil prices, as well as some transformed columns such as moving averages.
 
->*Runtime*: Around 7 min on a average laptop (due to NLP models, which has been improved via batching). This run time is far faster on my PC due to better hardware.
+>*Runtime*: Depending on your computer, this could take up to 8 min (on a average laptop) due to NLP models, which have been improved via batching. This run time is far faster on more powerful computers.
 
 Script 3 (`Scripts/Outputs.ipynb`) uses our dataset from script 2 to generate our outputted graphs and regression models.
 >*Runtime:* Negligible.
 
  **Data/**
 
-My pre-compiled data if you wish to use the run option that does not require you to setup API keys (details below).
+My pre-compiled data if you wish to use the run option that does not require you to setup API keys or if you wish the run the code quicker (details below).
 
 **Make/**
 
-Contains two make files, one runs everything but requires API setup, the other runs the sentiment and output script without needed API keys, saving time (details below).
+Contains two make files, these are used to automate requirements and script running. One runs everything but requires API setup, the other runs the sentiment and output scripts only without needed API keys, saving time (details below).
 
 **Outputs/**
 
@@ -84,7 +84,7 @@ Contains blog qmd and html files, as well as a formatting css. To access my blog
 
  I have used make files to automate the process.  All pip install commands and requirements are covered within the make files for ease of use (other than ```pip install papermill``` which is detailed separately, all details below). 
 
-If you wish to re-render the blog, you will also require quarto, although this is not required for reproducing the code.
+If you wish to re-render the blog, you will also require quarto, although this is not required for reproducing the code or viewing my final output blog (link at top of README). Here is the [Quarto Download Link](https://quarto.org/docs/get-started/).
 
 **There are 2 options:**
 
@@ -92,6 +92,8 @@ If you wish to re-render the blog, you will also require quarto, although this i
 - **Option 2:** this wont need API keys, as you will just run the sentiment and outputs scripts using pre-compiled data, this option is here to save time as you wont need to create your ```.env``` file and API keys. 
 
 > If for whatever reason there is an external API connection issue (which is beyond my control), or if you hit a rate limit, please just revert to using option 2. It will run using all premade data which was saved from a normal run.
+
+> See [Overview](#overview) for runtime details.
 
 ### 1. Clone the repository (general to both methods)
 
@@ -173,7 +175,7 @@ python Make/Make_no_api.py
 
   
 
--  **Languages used:** All **python**, except for some **SQL** used for the creation and calculation of new columns, python could have been used instead but I chose to do it in SQL to further demonstrate skills learned in this module. **Git/Bash** used for github.
+-  **Languages used:** All **python**, except for some **SQL** used for the creation and calculation of new columns, python could have been used instead but I chose to do it in SQL to further demonstrate skills learned in this module. **Git/Bash** used for pushing and committing to Github.
 
 -  **Unit 5 Content:** Web scraping via APIs, however this still required calling html requests and then cleaning/parsing HTML with Beautifulsoup. Regression models with dummy variables, interaction terms, and accounting for heteroskedasticity (HC3).
 
@@ -182,3 +184,4 @@ python Make/Make_no_api.py
 ## References
 
 Please see pdf copy of reference in main.
+
